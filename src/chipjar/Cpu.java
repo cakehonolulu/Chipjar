@@ -18,6 +18,8 @@ public class Cpu {
 	protected short m_stack[];
 	
 	protected byte m_stack_pointer;
+	
+	boolean m_unhandled;
 
 	short m_opcode;
 	
@@ -30,13 +32,26 @@ public class Cpu {
 		this.m_stack = new short[STACK_SIZE];
 		this.m_stack_pointer = 0;
 		this.m_opcode = 0;
+		this.m_unhandled = false;
+	}
+	
+	private void m_cpu_decode_execute(short m_opcode) {
+		switch (m_opcode) {
+			default:
+				System.out.println("Unhandled opcode: " + (String.format("Opcode: 0x%X", m_opcode)));
+				m_unhandled = true;
+				break;
+		}
 	}
 	
 	protected void m_cpu_fde(Chipjar m_chipjar) {
 		short m_msbyte = m_chipjar.m_memory.m_memory_read(m_program_counter);
 		short m_lsbyte = m_chipjar.m_memory.m_memory_read((short) (m_program_counter + 1));
-		m_opcode = (short) ((m_msbyte << 8) | m_lsbyte & 0x00FF);
 		
-		System.out.println(String.format("Opcode: 0x%X", m_opcode));
+		m_opcode = (short) ((m_msbyte << 8) | m_lsbyte & 0x00FF);
+
+		m_cpu_decode_execute(m_opcode);
+		
+		m_program_counter += 2;
 	}
 }

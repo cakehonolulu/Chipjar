@@ -66,7 +66,10 @@ public class ChipjarApp {
             m_chipjar.m_memory.m_ram[0x200 + i] = m_rom_buffer[i];     
         }
 
-		m_chipjar.m_cpu.m_cpu_fde(m_chipjar);
+		while (m_chipjar.m_cpu.m_unhandled != true)
+		{
+			m_chipjar.m_cpu.m_cpu_fde(m_chipjar);
+		}
 	}
 
 }
