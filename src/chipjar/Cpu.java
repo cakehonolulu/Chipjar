@@ -19,6 +19,8 @@ public class Cpu {
 	
 	protected byte m_stack_pointer;
 
+	short m_opcode;
+	
 	protected Cpu() {
 		this.m_registers = new byte[REGISTER_SIZE];
 		this.m_timer_delay = 0;
@@ -27,5 +29,14 @@ public class Cpu {
 		this.m_program_counter = INITIAL_PROGRAM_COUNTER;
 		this.m_stack = new short[STACK_SIZE];
 		this.m_stack_pointer = 0;
+		this.m_opcode = 0;
+	}
+	
+	protected void m_cpu_fde(Chipjar m_chipjar) {
+		short m_msbyte = m_chipjar.m_memory.m_memory_read(m_program_counter);
+		short m_lsbyte = m_chipjar.m_memory.m_memory_read((short) (m_program_counter + 1));
+		m_opcode = (short) ((m_msbyte << 8) | m_lsbyte & 0x00FF);
+		
+		System.out.println(String.format("Opcode: 0x%X", m_opcode));
 	}
 }
