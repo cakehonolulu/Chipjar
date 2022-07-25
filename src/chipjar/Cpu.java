@@ -1,6 +1,6 @@
 package chipjar;
 
-public class CPU {
+public class Cpu {
 	private final byte REGISTER_SIZE = 16;
 	private final byte STACK_SIZE = 16;
 	private final short INITIAL_PROGRAM_COUNTER = 0x200;
@@ -19,7 +19,7 @@ public class CPU {
 	
 	protected byte m_stack_pointer;
 
-	protected CPU() {
+	protected Cpu() {
 		this.m_registers = new byte[REGISTER_SIZE];
 		this.m_timer_delay = 0;
 		this.m_sound_delay = 0;
