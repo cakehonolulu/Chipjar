@@ -61,10 +61,12 @@ public class ChipjarApp {
 		}
 		
 		// Read the ROM to memory
-		for (int i = 0; i < m_rom_buffer.length; i++) {     
+		for (int i = 0; i < m_rom_buffer.length; i++)
+		{
             m_chipjar.m_memory.m_ram[0x200 + i] = m_rom_buffer[i];     
         }
 
+		m_chipjar.m_cpu.m_cpu_fde(m_chipjar);
 	}
 
 }
