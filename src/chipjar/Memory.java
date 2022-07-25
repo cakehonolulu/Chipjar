@@ -1,7 +1,11 @@
 package chipjar;
 
 public class Memory {
-	private final short RAM_SIZE = 4096;
+	protected final short RAM_SIZE = 4096;
 	
-	byte m_memory[];
+	protected byte m_memory[];
+
+	public Memory() {
+		this.m_memory = new byte[RAM_SIZE];
+	}
 }
