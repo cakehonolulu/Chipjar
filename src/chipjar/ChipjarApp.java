@@ -17,7 +17,7 @@ public class ChipjarApp {
 		// Used for *actual* data reading
 		DataInputStream m_data = null;
 
-		byte[] m_rom_buffer;
+		byte[] m_rom_buffer = null;
 		
 		try {
 			
@@ -59,6 +59,11 @@ public class ChipjarApp {
 				m_data.close();
 			}
 		}
+		
+		// Read the ROM to memory
+		for (int i = 0; i < m_rom_buffer.length; i++) {     
+            m_chipjar.m_memory.m_ram[0x200 + i] = m_rom_buffer[i];     
+        }
 
 	}
 
