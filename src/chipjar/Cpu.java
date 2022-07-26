@@ -19,7 +19,7 @@ public class Cpu {
 	
 	protected byte m_stack_pointer;
 	
-	boolean m_unhandled;
+	public boolean m_unhandled;
 
 	short m_opcode;
 	
@@ -44,7 +44,7 @@ public class Cpu {
 		}
 	}
 	
-	protected void m_cpu_fde(Chipjar m_chipjar) {
+	public void m_cpu_fde(Chipjar m_chipjar) {
 		short m_msbyte = m_chipjar.m_memory.m_memory_read(m_program_counter);
 		short m_lsbyte = m_chipjar.m_memory.m_memory_read((short) (m_program_counter + 1));
 		

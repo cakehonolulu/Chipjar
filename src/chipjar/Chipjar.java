@@ -1,8 +1,8 @@
 package chipjar;
 
 public class Chipjar {
-	Cpu m_cpu;
-	Memory m_memory;
+	public Cpu m_cpu;
+	public Memory m_memory;
 	
 	public Chipjar() {
 		this.m_cpu = new Cpu();
