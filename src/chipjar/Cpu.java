@@ -55,6 +55,10 @@ public class Cpu {
 				m_chipjar.m_cpu.m_index_register = (short) (m_opcode & 0x0FFF);
 				break;
 				
+			case 0x6000:
+				m_chipjar.m_cpu.m_registers[(m_opcode & 0x0F00) >> 8] = (byte) (m_opcode & 0x00FF);
+				break;
+				
 			default:
 				System.out.println("Unhandled opcode: " + (String.format("Opcode: 0x%X", m_opcode)));
 				m_unhandled = true;
