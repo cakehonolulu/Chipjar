@@ -1,5 +1,7 @@
 package chipjar;
 
+import java.util.Arrays;
+
 public class Cpu {
 	private final byte REGISTER_SIZE = 16;
 	private final byte STACK_SIZE = 16;
@@ -35,8 +37,17 @@ public class Cpu {
 		this.m_unhandled = false;
 	}
 	
-	private void m_cpu_decode_execute(short m_opcode) {
-		switch (m_opcode) {
+	private void m_cpu_execute(short m_opcode, Chipjar m_chipjar) {
+		switch (m_opcode & 0xF000) {
+			case 0x0000:
+					switch (m_opcode & 0x00FF) {
+						case 0xE0:
+							System.out.println("Clearing screen...");
+							Arrays.fill(m_chipjar.m_graphics.m_video_ram, 0);
+							break;
+					}
+				break;
+				
 			default:
 				System.out.println("Unhandled opcode: " + (String.format("Opcode: 0x%X", m_opcode)));
 				m_unhandled = true;
@@ -44,13 +55,17 @@ public class Cpu {
 		}
 	}
 	
-	public void m_cpu_fde(Chipjar m_chipjar) {
+	private short m_cpu_fetch_decode(Chipjar m_chipjar) {
 		short m_msbyte = m_chipjar.m_memory.m_memory_read(m_program_counter);
 		short m_lsbyte = m_chipjar.m_memory.m_memory_read((short) (m_program_counter + 1));
 		
-		m_opcode = (short) ((m_msbyte << 8) | m_lsbyte & 0x00FF);
-
-		m_cpu_decode_execute(m_opcode);
+		return (short) ((m_msbyte << 8) | m_lsbyte & 0x00FF);
+	}
+	
+	public void m_cpu_fde(Chipjar m_chipjar) {
+		short m_opcode = m_cpu_fetch_decode(m_chipjar);
+		
+		m_cpu_execute(m_opcode, m_chipjar);
 		
 		m_program_counter += 2;
 	}
