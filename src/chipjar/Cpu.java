@@ -76,6 +76,8 @@ public class Cpu {
 	public void m_cpu_fde(Chipjar m_chipjar) {
 		short m_opcode = m_cpu_fetch_decode(m_chipjar);
 		
+		System.out.println("Opcode: " + String.format("0x%04X", m_opcode));
+		
 		m_cpu_execute(m_opcode, m_chipjar);
 		
 		m_program_counter += 2;
