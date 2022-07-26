@@ -43,9 +43,16 @@ public class Cpu {
 					switch (m_opcode & 0x00FF) {
 						case 0xE0:
 							System.out.println("Clearing screen...");
-							Arrays.fill(m_chipjar.m_graphics.m_video_ram, 0);
+							for (byte[] m_rows: m_chipjar.m_graphics.m_video_ram)
+							{
+								Arrays.fill(m_rows, (byte) 0);	
+							}
 							break;
 					}
+				break;
+				
+			case 0xA000:
+				m_chipjar.m_cpu.m_index_register = (short) (m_opcode & 0x0FFF);
 				break;
 				
 			default:
