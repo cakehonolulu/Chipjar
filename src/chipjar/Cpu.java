@@ -67,6 +67,10 @@ public class Cpu {
 					}
 				break;
 				
+			case 0x1000:
+				m_chipjar.m_cpu.m_program_counter = (short) ((m_opcode & 0x0FFF) - 2);
+				break;
+			
 			case 0xA000:
 				m_chipjar.m_cpu.m_index_register = (short) (m_opcode & 0x0FFF);
 				break;
