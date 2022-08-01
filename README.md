@@ -27,3 +27,11 @@ While originally it was developed as an Eclipse project; I opted to switch to ma
 ```bash
 mvn package
 ```
+
+## 🥥 Credits
+
+For logo making:
+
+* DALL-e Mini AI Image Generator [https://huggingface.co/spaces/dalle-mini/dalle-mini](https://huggingface.co/spaces/dalle-mini/dalle-mini)
+* bigjpg AI Image Upscaler [https://bigjpg.com/](https://bigjpg.com/)
+* Pixel-it [https://giventofly.github.io/pixelit/](https://giventofly.github.io/pixelit/)
