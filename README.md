@@ -28,7 +28,11 @@ While originally it was developed as an Eclipse project; I opted to switch to ma
 mvn package
 ```
 
+<br>
+
 ## 🥥 Credits
+
+<br>
 
 For logo making:
 
