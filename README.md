@@ -14,6 +14,7 @@ A simple Java 8 CHIP-8 Interpreter Emulator
 Built using Java 8
 
 <br>
+<br>
 
 ## 👷🏼‍♂️ Compile instructions
 
